@@ -7,7 +7,7 @@ My personal one-page profile site — live at **[atalaycavusoglu.com](https://at
 - Scroll-driven animations, typewriter headline, animated counters and marquee
 - Built-in rule-based chat assistant that answers quick questions about me
 - Responsive for phones and tablets; respects `prefers-reduced-motion`
-- Hosted on Vercel
+- Hosted on Vercel — every push to `main` deploys automatically
 
 ## Run locally
 
