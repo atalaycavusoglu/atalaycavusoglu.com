@@ -71,34 +71,6 @@
     .loader-text span:nth-child(2) { animation-delay: .08s; }
     @keyframes up { to { transform: translateY(0); } }
 
-    /* ---------- Background ---------- */
-    .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-    .blob {
-      position: absolute; border-radius: 50%; filter: blur(90px); opacity: .45;
-      will-change: transform;
-    }
-    .blob.b1 { width: 520px; height: 520px; background: var(--accent); top: -160px; left: -120px; animation: float1 18s ease-in-out infinite; }
-    .blob.b2 { width: 460px; height: 460px; background: var(--accent-3); top: 20%; right: -160px; animation: float2 22s ease-in-out infinite; opacity: .35; }
-    .blob.b3 { width: 380px; height: 380px; background: var(--accent-2); bottom: -140px; left: 30%; animation: float3 20s ease-in-out infinite; opacity: .25; }
-    @keyframes float1 { 50% { transform: translate(140px, 120px) scale(1.15); } }
-    @keyframes float2 { 50% { transform: translate(-160px, 80px) scale(.9); } }
-    @keyframes float3 { 50% { transform: translate(-120px, -100px) scale(1.1); } }
-    .grid-overlay {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%);
-    }
-    .spotlight {
-      position: fixed; width: 600px; height: 600px; border-radius: 50%; z-index: -1;
-      background: radial-gradient(circle, rgba(255, 59, 78, .12), transparent 60%);
-      transform: translate(-50%, -50%); pointer-events: none;
-      left: var(--mx, 50%); top: var(--my, 30%);
-      transition: opacity .3s;
-    }
 
     /* ---------- Progress + header ---------- */
     .progress {
@@ -532,13 +504,6 @@
     <div class="loader-text"><span>atalay</span><span style="color:var(--accent)">.</span></div>
   </div>
 
-  <div class="bg" aria-hidden="true">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-    <div class="grid-overlay"></div>
-  </div>
-  <div class="spotlight" aria-hidden="true"></div>
   <div class="progress" aria-hidden="true"></div>
 
   <header>
@@ -923,12 +888,6 @@
 
       /* ---------- Pointer effects (desktop only) ---------- */
       if (fine && !reduce) {
-        var spot = document.querySelector(".spotlight");
-        addEventListener("pointermove", function (e) {
-          spot.style.setProperty("--mx", e.clientX + "px");
-          spot.style.setProperty("--my", e.clientY + "px");
-        }, { passive: true });
-
         document.querySelectorAll(".tilt").forEach(function (card) {
           card.addEventListener("pointermove", function (e) {
             var r = card.getBoundingClientRect();
@@ -948,9 +907,6 @@
           });
           btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
         });
-      } else {
-        var s = document.querySelector(".spotlight");
-        if (s) s.style.display = "none";
       }
 
       /* ---------- Chatbot (rule-based, no backend) ---------- */
