@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV · Atalay Çavuşoğlu</title>
+  <meta name="description" content="Atalay Çavuşoğlu — Dijital Dönüşüm & E-Ticaret Uzman Yardımcısı. Özgeçmiş.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff3b4e'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='700' font-size='34' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #18181b;
+      --muted: #52525b;
+      --soft: #a1a1aa;
+      --line: #e4e4e7;
+      --accent: #e11d48;
+      --accent-2: #ff8a3d;
+      --side: #1a0b0e;
+      --side-text: #f4f4f5;
+      --side-muted: #c4b5b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: #2a1418; }
+    body { font: 400 10pt/1.5 Inter, system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; line-height: 1.15; }
+    a { color: inherit; text-decoration: none; }
+    html[lang="tr"] .en, html[lang="en"] .tr { display: none !important; }
+
+    /* Screen toolbar */
+    .toolbar {
+      max-width: 210mm; margin: 24px auto 16px; padding: 0 16px;
+      display: flex; gap: 10px; justify-content: space-between; align-items: center; flex-wrap: wrap;
+      font: 500 14px Inter, sans-serif; color: #f4f4f5;
+    }
+    .toolbar .group { display: flex; gap: 8px; flex-wrap: wrap; }
+    .toolbar a, .toolbar button {
+      font: inherit; color: inherit; cursor: pointer; padding: 9px 16px; border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .15); background: rgba(255, 255, 255, .06);
+    }
+    .toolbar .primary { background: #ff3b4e; border-color: #ff3b4e; color: #fff; }
+    .toolbar [aria-pressed="true"] { background: #fff; color: #18181b; }
+
+    /* A4 sheet */
+    .page {
+      width: 210mm; min-height: 297mm; margin: 0 auto 40px; background: #fff;
+      display: grid; grid-template-columns: 70mm 1fr;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .6);
+    }
+    aside { background: var(--side); color: var(--side-text); padding: 14mm 8mm 12mm; }
+    .photo {
+      width: 40mm; height: 40mm; margin: 0 auto 7mm; border-radius: 50%; overflow: hidden;
+      border: 1.2mm solid var(--accent); background: #e9e9ea;
+    }
+    .photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); display: block; }
+    aside h2 {
+      font: 600 7.5pt Inter, sans-serif; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent-2); margin: 7mm 0 3mm;
+    }
+    aside ul { list-style: none; display: grid; gap: 2.2mm; }
+    .contact li { display: grid; grid-template-columns: 4.5mm 1fr; gap: 2.5mm; align-items: center; font-size: 8.6pt; word-break: break-word; }
+    .contact svg { width: 4.5mm; height: 4.5mm; color: var(--accent-2); }
+    .skills { display: flex !important; flex-wrap: wrap; gap: 1.6mm !important; }
+    .skills li {
+      font-size: 8pt; padding: 1mm 2.6mm; border-radius: 999px;
+      background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .12);
+    }
+    .plain li { font-size: 8.8pt; color: var(--side-text); }
+    .plain li b { display: block; font-weight: 600; }
+    .plain li span { display: block; color: var(--side-muted); font-size: 8pt; }
+
+    main { padding: 14mm 12mm 12mm 11mm; }
+    header h1 { font-size: 28pt; letter-spacing: -0.03em; }
+    header h1 b { color: var(--accent); }
+    header .role { font: 500 11.5pt "Space Grotesk", sans-serif; color: var(--muted); margin-top: 1.5mm; }
+    header .bar { height: 1.2mm; width: 22mm; margin-top: 4mm; border-radius: 1mm; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .summary { margin-top: 5mm; color: var(--muted); font-size: 9.6pt; }
+
+    section { margin-top: 7mm; }
+    section > h2 {
+      font: 700 9pt "Space Grotesk", sans-serif; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); padding-bottom: 1.6mm; margin-bottom: 3.5mm; border-bottom: 1px solid var(--line);
+    }
+    .job { position: relative; padding-left: 5mm; margin-bottom: 4.5mm; break-inside: avoid; }
+    .job::before { content: ""; position: absolute; left: 0; top: 1.6mm; width: 2mm; height: 2mm; border-radius: 50%; background: var(--accent); }
+    .job::after { content: ""; position: absolute; left: .85mm; top: 4.6mm; bottom: -3.5mm; width: .3mm; background: var(--line); }
+    .job:last-child::after { display: none; }
+    .job .top { display: flex; justify-content: space-between; gap: 4mm; align-items: baseline; }
+    .job h3 { font-size: 10.6pt; }
+    .job .when { font-size: 8.2pt; font-weight: 600; color: var(--accent); white-space: nowrap; }
+    .job .org { font-size: 9pt; color: var(--muted); font-weight: 500; margin: .5mm 0 1.5mm; }
+    .job ul { margin-left: 4mm; color: var(--ink); font-size: 9pt; display: grid; gap: .8mm; }
+    .job ul li::marker { color: var(--accent); }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 6mm; }
+    .item { break-inside: avoid; }
+    .item strong { display: block; font: 600 9.6pt "Space Grotesk", sans-serif; }
+    .item span { font-size: 8.6pt; color: var(--muted); }
+    .item em { font-style: normal; font-size: 8pt; font-weight: 600; color: var(--accent); }
+
+    @media screen and (max-width: 840px) {
+      .page { width: auto; min-height: 0; margin: 0 16px 32px; grid-template-columns: 1fr; }
+      aside, main { padding: 28px 22px; }
+      .grid2 { grid-template-columns: 1fr; }
+    }
+    @page { size: A4; margin: 0; }
+    @media print {
+      html { background: #fff; }
+      .toolbar { display: none; }
+      .page { margin: 0; box-shadow: none; height: 297mm; overflow: hidden; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <a href="/">← <span class="tr">Siteye dön</span><span class="en">Back to site</span></a>
+    <div class="group">
+      <button type="button" data-set-lang="tr" aria-pressed="true">TR</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      <a class="primary tr" href="/cv-atalay-cavusoglu-tr.pdf" download>PDF indir</a>
+      <a class="primary en" href="/cv-atalay-cavusoglu-en.pdf" download>Download PDF</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <aside>
+      <div class="photo"><img src="photo.png" alt="Atalay Çavuşoğlu"></div>
+
+      <h2><span class="tr">İletişim</span><span class="en">Contact</span></h2>
+      <ul class="contact">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:atalaycavusoglu1@gmail.com">atalaycavusoglu1@gmail.com</a></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><a href="https://atalaycavusoglu.com">atalaycavusoglu.com</a></li>
+        <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm7 0h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.79-1.7-2.79-1.7 0-1.96 1.33-1.96 2.7V21h-4V9.5Z"/></svg><a href="https://www.linkedin.com/in/atalaycavusoglu">in/atalaycavusoglu</a></li>
+        <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.35 1.11 2.92.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.56 5.05.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.1 10.1 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg><a href="https://github.com/atalaycavusoglu">atalaycavusoglu</a></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="tr">İstanbul, Türkiye</span><span class="en">Istanbul, Türkiye</span></li>
+      </ul>
+
+      <h2><span class="tr">Pazarlama</span><span class="en">Marketing</span></h2>
+      <ul class="skills">
+        <li>Google Ads</li><li>Meta Ads</li><li>SEO</li><li>CRM</li>
+        <li><span class="tr">E-posta pazarlama</span><span class="en">Email marketing</span></li>
+        <li><span class="tr">Medya planlama</span><span class="en">Media planning</span></li>
+      </ul>
+
+      <h2><span class="tr">E-Ticaret</span><span class="en">E-Commerce</span></h2>
+      <ul class="skills">
+        <li><span class="tr">Pazaryeri yönetimi</span><span class="en">Marketplaces</span></li>
+        <li><span class="tr">Ürün & kategori</span><span class="en">Product & category</span></li>
+        <li><span class="tr">Fiyatlandırma</span><span class="en">Pricing</span></li>
+        <li><span class="tr">Kârlılık analizi</span><span class="en">Profitability</span></li>
+        <li><span class="tr">Dijital dönüşüm</span><span class="en">Digital transformation</span></li>
+      </ul>
+
+      <h2><span class="tr">Veri & Teknoloji</span><span class="en">Data & Tech</span></h2>
+      <ul class="skills">
+        <li><span class="tr">Raporlama</span><span class="en">Reporting</span></li>
+        <li><span class="tr">Veri analizi</span><span class="en">Data analysis</span></li>
+        <li>Excel</li>
+        <li><span class="tr">Yapay zeka ajanları</span><span class="en">AI agents</span></li>
+        <li>HTML & CSS</li><li>Swift</li>
+      </ul>
+
+      <h2><span class="tr">Yan projeler</span><span class="en">Side projects</span></h2>
+      <ul class="plain">
+        <li><b class="tr">5 Günde 5 iOS Projesi</b><b class="en">5 iOS Apps in 5 Days</b><span class="tr">Swift ile zamanlayıcı, XOX, hesap makinesi ve daha fazlası</span><span class="en">Timer, tic-tac-toe, calculator and more in Swift</span></li>
+        <li><b>atalaycavusoglu.com</b><span class="tr">Kişisel site, sıfırdan HTML/CSS/JS</span><span class="en">Personal site, hand-built in HTML/CSS/JS</span></li>
+      </ul>
+    </aside>
+
+    <main>
+      <header>
+        <h1>Atalay <b>Çavuşoğlu</b></h1>
+        <div class="role"><span class="tr">Dijital Dönüşüm & E-Ticaret Uzman Yardımcısı</span><span class="en">Digital Transformation & E-Commerce Assistant Specialist</span></div>
+        <div class="bar"></div>
+        <p class="summary">
+          <span class="tr">Pazarlamayı, ticareti, veriyi ve teknolojiyi bir araya getirerek markaların dijitalde büyümesine yardım ediyorum. MirStore'da sıfırdan kurulan e-ticaret operasyonunda ürün ve pazaryeri yönetimi, Google & Meta Ads, SEO, CRM ve performans raporlama süreçlerinde görev alıyor; grup şirketi Özdemir Makine'nin dijital dönüşümünü destekliyorum. Bilgisayar programcılığı altyapım sayesinde teknik ekiplerle aynı dili konuşuyorum.</span>
+          <span class="en">I combine marketing, commerce, data and technology to help brands grow online. At MirStore I work on a newly built e-commerce operation across product and marketplace management, Google & Meta Ads, SEO, CRM and performance reporting, and I support the digital transformation of group company Özdemir Makine. A computer programming background lets me speak the same language as technical teams.</span>
+        </p>
+      </header>
+
+      <section>
+        <h2><span class="tr">Deneyim</span><span class="en">Experience</span></h2>
+
+        <div class="job">
+          <div class="top">
+            <h3><span class="tr">Dijital Dönüşüm ve E-Ticaret Uzman Yardımcısı</span><span class="en">Digital Transformation & E-Commerce Assistant Specialist</span></h3>
+            <div class="when"><span class="tr">Ağu 2026 – Bugün</span><span class="en">Aug 2026 – Present</span></div>
+          </div>
+          <div class="org">MirStore · <span class="tr">İstanbul</span><span class="en">Istanbul</span></div>
+          <ul>
+            <li><span class="tr">E-ticaret, uluslararası lojistik, gümrük, depolama ve fulfillment'ı birleştiren ekosistemde yeni e-ticaret operasyonunun kurulumuna destek</span><span class="en">Helping set up a new e-commerce operation in an ecosystem spanning e-commerce, international logistics, customs, warehousing and fulfillment</span></li>
+            <li><span class="tr">Ürün, kategori ve pazaryeri yönetimi; fiyatlandırma ve kârlılık analizi</span><span class="en">Product, category and marketplace management; pricing and profitability analysis</span></li>
+            <li><span class="tr">Google Ads ve Meta Ads kampanyaları, SEO, CRM ve e-posta pazarlama</span><span class="en">Google Ads and Meta Ads campaigns, SEO, CRM and email marketing</span></li>
+            <li><span class="tr">Özdemir Makine (matbaa & ambalaj makineleri) için dijital pazarlama, raporlama ve Avrasya Ambalaj Fuarı'nda saha desteği</span><span class="en">Digital marketing, reporting and on-site support at the Eurasia Packaging Fair for Özdemir Makine (printing & packaging machinery)</span></li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="top">
+            <h3><span class="tr">Dijital Pazarlama Stajyeri</span><span class="en">Digital Marketing Intern</span></h3>
+            <div class="when"><span class="tr">Oca – Nis 2026</span><span class="en">Jan – Apr 2026</span></div>
+          </div>
+          <div class="org">Prime Care Ads</div>
+          <ul>
+            <li><span class="tr">Google Ads, Meta Ads ve native platformlarda kampanya kurulumu ve optimizasyonu</span><span class="en">Campaign setup and optimization across Google Ads, Meta Ads and native platforms</span></li>
+            <li><span class="tr">Medya planlama, bütçe takibi ve haftalık/aylık performans raporları</span><span class="en">Media planning, budget tracking and weekly/monthly performance reports</span></li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="top">
+            <h3><span class="tr">Katılımcı · YetGen 3.0</span><span class="en">Trainee · YetGen 3.0</span></h3>
+            <div class="when"><span class="tr">Nis – Haz 2018</span><span class="en">Apr – Jun 2018</span></div>
+          </div>
+          <div class="org">Yetkin Gençler · MZV & MEF <span class="tr">Üniversitesi</span><span class="en">University</span></div>
+          <ul>
+            <li><span class="tr">Kariyer planlama, girişimcilik, iş planı, Excel modelleme ve Python'a giriş; final projesinin jüriye sunumu</span><span class="en">Career planning, entrepreneurship, business planning, Excel modeling and intro to Python; final project pitched to a jury</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="tr">Eğitim</span><span class="en">Education</span></h2>
+        <div class="grid2">
+          <div class="item"><em>2023 – 2027</em><strong><span class="tr">Yönetim Bilişim Sistemleri</span><span class="en">Management Information Systems</span></strong><span><span class="tr">Anadolu Üniversitesi · Lisans</span><span class="en">Anadolu University · B.Sc.</span></span></div>
+          <div class="item"><em>2021 – 2023</em><strong><span class="tr">Bilgisayar Programcılığı</span><span class="en">Computer Programming</span></strong><span><span class="tr">Sakarya Üniversitesi · Ön Lisans</span><span class="en">Sakarya University · Associate degree</span></span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="tr">Sertifikalar</span><span class="en">Certificates</span></h2>
+        <div class="grid2">
+          <div class="item"><em>2026</em><strong>AI Agents Bootcamp</strong><span>IBM SkillsBuild</span></div>
+          <div class="item"><em>2023</em><strong><span class="tr">Blokzincir Temelleri</span><span class="en">Blockchain Fundamentals</span></strong><span>YetGen & Paribu Hub</span></div>
+          <div class="item"><em>2022</em><strong><span class="tr">Swift ile iOS Programlama</span><span class="en">iOS Programming with Swift</span></strong><span>BTK Akademi</span></div>
+          <div class="item"><em>2018</em><strong>MZV-MEF YetGen</strong><span>Yetkin Gençler</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var buttons = document.querySelectorAll("[data-set-lang]");
+      function setLang(lang) {
+        root.lang = lang;
+        buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)); });
+      }
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          setLang(b.dataset.setLang);
+          try { localStorage.setItem("lang", b.dataset.setLang); } catch (e) {}
+        });
+      });
+      var q = new URLSearchParams(location.search).get("lang"), saved = null;
+      try { saved = localStorage.getItem("lang"); } catch (e) {}
+      setLang(q === "en" || q === "tr" ? q : saved === "en" ? "en" : "tr");
+    })();
+  </script>
+</body>
+</html>
