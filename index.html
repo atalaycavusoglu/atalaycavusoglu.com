@@ -282,6 +282,14 @@
     .label::before { content: ""; width: 28px; height: 1px; background: currentColor; }
     section h2 { font-size: clamp(34px, 5.5vw, 60px); letter-spacing: -0.035em; margin-bottom: 48px; max-width: 760px; }
 
+    /* Countdown */
+    .countdown { text-align: center; padding: 56px 24px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); }
+    .countdown .big { font: 700 clamp(96px, 18vw, 200px) "Space Grotesk", sans-serif; letter-spacing: -0.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+    .countdown .big.pop { animation: cdpop .35s var(--ease); }
+    @keyframes cdpop { from { transform: scale(1.08); } to { transform: scale(1); } }
+    .countdown .meter { height: 6px; max-width: 420px; margin: 28px auto 24px; border-radius: 999px; background: rgba(255, 255, 255, .08); overflow: hidden; }
+    .countdown .meter i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3)); transition: width 1s linear; }
+
     /* Stats */
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .stat {
@@ -643,6 +651,15 @@
       </div>
     </div>
 
+    <section id="countdown" class="wrap">
+      <div class="label reveal"><span class="tr">Geri sayım</span><span class="en">Countdown</span></div>
+      <div class="countdown reveal">
+        <div class="big grad" id="cd-num" aria-live="off">100</div>
+        <div class="meter"><i id="cd-bar"></i></div>
+        <button type="button" class="btn" id="cd-btn"><span class="tr">Tekrar başlat</span><span class="en">Restart</span></button>
+      </div>
+    </section>
+
     <section id="now" class="wrap">
       <div class="label reveal"><span class="tr">Şu an</span><span class="en">Now</span></div>
       <h2 class="reveal"><span class="tr">Ne üzerinde <span class="grad">çalışıyorum?</span></span><span class="en">What I'm <span class="grad">working on</span></span></h2>
@@ -825,6 +842,25 @@
       var root = document.documentElement;
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       var fine = window.matchMedia("(pointer: fine)").matches;
+
+      /* ---------- Countdown ---------- */
+      (function () {
+        var num = document.getElementById("cd-num"), bar = document.getElementById("cd-bar"), btn = document.getElementById("cd-btn");
+        var timer = null, n = 100;
+        function show() {
+          num.textContent = n; bar.style.width = n + "%";
+          if (!reduce) { num.classList.remove("pop"); void num.offsetWidth; num.classList.add("pop"); }
+        }
+        function start() {
+          clearInterval(timer); n = 100; show();
+          timer = setInterval(function () { n--; show(); if (n <= 0) clearInterval(timer); }, 1000);
+        }
+        btn.addEventListener("click", start);
+        var io = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) { start(); io.disconnect(); }
+        }, { threshold: 0.4 });
+        io.observe(num);
+      })();
 
       /* ---------- Language ---------- */
       var words = {
