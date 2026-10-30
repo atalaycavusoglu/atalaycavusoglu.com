@@ -422,6 +422,81 @@
     @media (max-width: 560px) { .apps { grid-template-columns: repeat(3, 1fr); } }
     .lead { font-size: 18px; color: var(--muted); max-width: 680px; }
 
+    /* Process */
+    .steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; position: relative; }
+    .step { position: relative; padding: 28px 24px; border-radius: var(--radius); background: var(--surface-strong); border: 1px solid var(--line); }
+    .step .n {
+      display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; margin-bottom: 20px;
+      font: 700 15px "Space Grotesk", sans-serif; color: var(--accent);
+      border: 1px solid rgba(255, 59, 78, .35); background: rgba(255, 59, 78, .08);
+      transition: background .5s var(--ease), color .5s, box-shadow .5s;
+      transition-delay: calc(var(--d, 0s) + .4s);
+    }
+    .step.in .n { background: var(--accent); color: #fff; box-shadow: 0 0 0 6px rgba(255, 59, 78, .12); }
+    .step h3 { font-size: 21px; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 14.5px; }
+    .step:not(:last-child)::before {
+      content: ""; position: absolute; top: 49px; left: 68px; right: -16px; height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform-origin: left; transform: scaleX(0); transition: transform .9s var(--ease); transition-delay: calc(var(--d, 0s) + .5s);
+    }
+    .step.in::before { transform: scaleX(1); }
+    @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } .step:nth-child(2)::before { display: none; } }
+    @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } .step::before { display: none; } }
+
+    /* ROAS calculator */
+    .calc { display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: start; }
+    .calc-form, .calc-out { padding: 30px; border-radius: var(--radius); background: var(--surface-strong); border: 1px solid var(--line); }
+    .calc-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .calc-form label { display: grid; gap: 6px; font-size: 13px; font-weight: 500; color: var(--muted); }
+    .calc-form .full { grid-column: 1 / -1; }
+    .field { position: relative; }
+    .field input {
+      font: 500 16px Inter, sans-serif; color: var(--text); width: 100%;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      padding: 12px 44px 12px 14px; outline: none; transition: border-color .2s, background .2s;
+    }
+    .field input:focus { border-color: var(--accent); background: rgba(255, 255, 255, .06); }
+    .field span { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--muted); pointer-events: none; }
+    .calc-form .divider { grid-column: 1 / -1; height: 1px; background: var(--line); margin: 4px 0; }
+    .calc-out .k { font-size: 13px; color: var(--muted); font-weight: 500; }
+    .calc-out .big { font: 700 clamp(56px, 8vw, 84px)/1 "Space Grotesk", sans-serif; letter-spacing: -0.04em; margin: 6px 0 4px; }
+    .calc-out .sub { color: var(--muted); font-size: 14px; }
+    .breakdown { display: flex; height: 14px; border-radius: 999px; overflow: hidden; margin: 26px 0 12px; background: var(--surface); }
+    .breakdown i { display: block; height: 100%; transition: flex-grow .6s var(--ease); flex-basis: 0; }
+    .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; color: var(--muted); }
+    .legend > span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend > span::before { content: ""; width: 9px; height: 9px; border-radius: 3px; background: var(--c); }
+    .calc-rows { margin-top: 22px; display: grid; }
+    .calc-rows div { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); font-size: 14.5px; }
+    .calc-rows b { font: 600 16px "Space Grotesk", sans-serif; }
+    .verdict { margin-top: 18px; padding: 14px 16px; border-radius: 14px; font-size: 14px; font-weight: 500; background: var(--surface); border: 1px solid var(--line); }
+    .verdict.good { color: #4ade80; border-color: rgba(74, 222, 128, .3); background: rgba(74, 222, 128, .07); }
+    .verdict.bad { color: #ff6b78; border-color: rgba(255, 59, 78, .35); background: rgba(255, 59, 78, .08); }
+    .calc-note { margin-top: 16px; font-size: 13px; color: var(--muted); }
+    .calc-note a { color: var(--accent); }
+    @media (max-width: 860px) { .calc { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) { .calc-form, .calc-out { padding: 22px; } .calc-form { grid-template-columns: 1fr; } .field input { font-size: 16px; } }
+
+    /* Latest writing */
+    .post-link {
+      display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+      padding: 32px; border-radius: var(--radius); background: var(--surface-strong); border: 1px solid var(--line);
+      text-decoration: none; transition: border-color .3s, transform .4s var(--ease);
+    }
+    .post-link:hover { border-color: rgba(255, 59, 78, .35); transform: translateY(-4px); }
+    .post-link .meta { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .post-link h3 { font-size: clamp(22px, 3vw, 30px); letter-spacing: -0.025em; margin-bottom: 10px; }
+    .post-link p { color: var(--muted); font-size: 15px; max-width: 640px; }
+    .post-link .go {
+      width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-size: 22px;
+      background: var(--accent); color: #fff; transition: transform .4s var(--ease);
+    }
+    .post-link:hover .go { transform: rotate(-45deg); }
+    .all-posts { display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 600; color: var(--muted); text-decoration: none; }
+    .all-posts:hover { color: var(--text); }
+    @media (max-width: 560px) { .post-link { grid-template-columns: 1fr; padding: 24px; } .post-link .go { display: none; } }
+
     /* Contact */
     .contact { text-align: center; padding-block: 140px 100px; }
     .contact h2 { font-size: clamp(44px, 9vw, 104px); margin: 0 auto 22px; max-width: none; letter-spacing: -0.05em; }
@@ -775,6 +850,33 @@
       </ol>
     </section>
 
+    <section id="process" class="wrap">
+      <div class="label reveal"><span class="tr">Yaklaşım</span><span class="en">Approach</span></div>
+      <h2 class="reveal"><span class="tr">Nasıl <span class="grad">çalışırım?</span></span><span class="en">How I <span class="grad">work</span></span></h2>
+      <ol class="steps">
+        <li class="step reveal" style="--d:0s">
+          <span class="n">01</span>
+          <h3><span class="tr">Analiz</span><span class="en">Analyze</span></h3>
+          <p><span class="tr">Önce rakamlara bakarım: satış, marj, kanal ve müşteri verisi. Sorunu tahminle değil, veriyle tanımlarım.</span><span class="en">I start with the numbers: sales, margin, channel and customer data. The problem gets defined by data, not guesses.</span></p>
+        </li>
+        <li class="step reveal" style="--d:.12s">
+          <span class="n">02</span>
+          <h3><span class="tr">Strateji</span><span class="en">Plan</span></h3>
+          <p><span class="tr">Hedefi kâra göre koyarım: hangi ürün, hangi kanal, ne kadar bütçe ve başarıyı neyle ölçeceğimiz.</span><span class="en">Goals are set around profit: which products, which channels, what budget and how success is measured.</span></p>
+        </li>
+        <li class="step reveal" style="--d:.24s">
+          <span class="n">03</span>
+          <h3><span class="tr">Uygulama</span><span class="en">Execute</span></h3>
+          <p><span class="tr">Kampanyaları, ürün sayfalarını, SEO'yu ve CRM akışlarını kurarım; küçük başlar, hızlı test ederim.</span><span class="en">I set up campaigns, product pages, SEO and CRM flows — starting small and testing fast.</span></p>
+        </li>
+        <li class="step reveal" style="--d:.36s">
+          <span class="n">04</span>
+          <h3><span class="tr">Ölç & iyileştir</span><span class="en">Measure & improve</span></h3>
+          <p><span class="tr">Düzenli raporlarla neyin işe yaradığını görür, bütçeyi kazandıran tarafa kaydırırım.</span><span class="en">Regular reporting shows what works, and budget moves to whatever earns the most.</span></p>
+        </li>
+      </ol>
+    </section>
+
     <section class="wrap">
       <div class="label reveal"><span class="tr">Öğrenme</span><span class="en">Learning</span></div>
       <h2 class="reveal"><span class="tr">Eğitim & sertifikalar</span><span class="en">Education & certificates</span></h2>
@@ -813,6 +915,75 @@
           <span class="tr">GitHub'da gör</span><span class="en">See on GitHub</span> <span class="arrow">→</span>
         </a>
       </div>
+    </section>
+
+    <section id="roas" class="wrap">
+      <div class="label reveal"><span class="tr">Ücretsiz araç</span><span class="en">Free tool</span></div>
+      <h2 class="reveal"><span class="tr">Reklamın <span class="grad">kâr ediyor mu?</span></span><span class="en">Are your ads <span class="grad">actually profitable?</span></span></h2>
+      <p class="lead reveal" style="margin:-24px 0 36px">
+        <span class="tr">Ürününün rakamlarını gir, başabaş ROAS'ını hemen gör. Kampanyan bu çizginin altındaysa her satışta para kaybediyorsun.</span>
+        <span class="en">Enter your product's numbers and see its break-even ROAS. If your campaign sits below this line, every sale loses money.</span>
+      </p>
+      <div class="calc">
+        <form class="calc-form reveal" id="calcForm" autocomplete="off" onsubmit="return false">
+          <label class="full"><span><span class="tr">Satış fiyatı (KDV dahil)</span><span class="en">Selling price (incl. VAT)</span></span>
+            <span class="field"><input name="price" inputmode="decimal" value="1000"><span>₺</span></span>
+          </label>
+          <label><span class="tr">KDV oranı</span><span class="en">VAT rate</span>
+            <span class="field"><input name="vat" inputmode="decimal" value="20"><span>%</span></span>
+          </label>
+          <label><span class="tr">Ürün maliyeti</span><span class="en">Product cost</span>
+            <span class="field"><input name="cost" inputmode="decimal" value="400"><span>₺</span></span>
+          </label>
+          <label><span class="tr">Ödeme / pazaryeri komisyonu</span><span class="en">Payment / marketplace fee</span>
+            <span class="field"><input name="fee" inputmode="decimal" value="3"><span>%</span></span>
+          </label>
+          <label><span class="tr">Kargo ve paketleme</span><span class="en">Shipping & packaging</span>
+            <span class="field"><input name="ship" inputmode="decimal" value="70"><span>₺</span></span>
+          </label>
+          <label class="full"><span class="tr">İade payı (sipariş başı ortalama)</span><span class="en">Returns (average per order)</span>
+            <span class="field"><input name="ret" inputmode="decimal" value="30"><span>₺</span></span>
+          </label>
+          <div class="divider"></div>
+          <label class="full"><span class="tr">Kampanyanın ROAS'ı (isteğe bağlı)</span><span class="en">Your campaign's ROAS (optional)</span>
+            <span class="field"><input name="roas" inputmode="decimal" value="3"><span>x</span></span>
+          </label>
+        </form>
+        <div class="calc-out reveal" style="--d:.1s" aria-live="polite">
+          <div class="k"><span class="tr">Başabaş ROAS</span><span class="en">Break-even ROAS</span></div>
+          <div class="big grad" id="beRoas">3,3</div>
+          <div class="sub"><span class="tr">Bu değerin altındaki her kampanya zarar ettirir.</span><span class="en">Any campaign below this loses money.</span></div>
+          <div class="breakdown" id="calcBar">
+            <i style="background:#71717a"></i><i style="background:#8b5cf6"></i><i style="background:#ff8a3d"></i><i style="background:#22c55e"></i>
+          </div>
+          <div class="legend">
+            <span style="--c:#71717a"><span class="tr">KDV</span><span class="en">VAT</span></span>
+            <span style="--c:#8b5cf6"><span class="tr">Ürün maliyeti</span><span class="en">Product cost</span></span>
+            <span style="--c:#ff8a3d"><span class="tr">Komisyon, kargo, iade</span><span class="en">Fees, shipping, returns</span></span>
+            <span style="--c:#22c55e"><span class="tr">Katkı marjı</span><span class="en">Contribution margin</span></span>
+          </div>
+          <div class="calc-rows">
+            <div><span><span class="tr">Katkı marjı (reklam öncesi)</span><span class="en">Contribution margin (before ads)</span></span><b id="cmVal">303 ₺</b></div>
+            <div><span><span class="tr">Sipariş başı en fazla reklam harcaması</span><span class="en">Max ad spend per order</span></span><b id="maxCpa">303 ₺</b></div>
+          </div>
+          <div class="verdict" id="verdict"></div>
+          <p class="calc-note"><span class="tr">Hesabın mantığını <a href="blog/roas-tek-basina-yetmez/">ROAS tek başına yetmez</a> yazımda anlattım.</span><span class="en">I explain the logic in my post <a href="blog/roas-tek-basina-yetmez/">“ROAS isn't enough”</a> (Turkish).</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing" class="wrap">
+      <div class="label reveal"><span class="tr">Blog</span><span class="en">Writing</span></div>
+      <h2 class="reveal"><span class="tr">Son <span class="grad">yazılar</span></span><span class="en">Latest <span class="grad">writing</span></span></h2>
+      <a class="post-link reveal" href="blog/roas-tek-basina-yetmez/">
+        <div>
+          <div class="meta"><span class="tr">27 Ekim 2026 · 6 dk okuma · E-ticaret</span><span class="en">Oct 27, 2026 · 6 min read · In Turkish</span></div>
+          <h3>ROAS tek başına yetmez: Reklamın gerçekten kâr getirip getirmediğini nasıl anlarsın?</h3>
+          <p><span class="tr">ROAS 3 iyi görünebilir ama her satışta zarar ediyor olabilirsin. Katkı marjı ve başabaş ROAS ile reklam bütçesini kâra göre yönetmenin pratik yolu.</span><span class="en">A ROAS of 3 can look great while every sale loses money. A practical guide to managing ad budgets by profit with contribution margin and break-even ROAS.</span></p>
+        </div>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a class="all-posts reveal" href="blog/"><span class="tr">Tüm yazılar →</span><span class="en">All posts →</span></a>
     </section>
 
     <section id="contact" class="wrap contact">
@@ -1079,7 +1250,7 @@
         });
 
         // Page spotlight and card border light
-        var glows = document.querySelectorAll(".card, .stat, .list-card, .app");
+        var glows = document.querySelectorAll(".card, .stat, .list-card, .app, .step, .calc-form, .calc-out, .post-link");
         glows.forEach(function (el) { el.classList.add("glow"); });
 
         var mx = 0, my = 0, pending = false;
@@ -1101,6 +1272,67 @@
         }, { passive: true });
         document.addEventListener("pointerleave", function () { document.body.classList.remove("has-pointer"); });
       }
+
+      /* ---------- Break-even ROAS calculator ---------- */
+      var calcForm = document.getElementById("calcForm");
+      var calcText = {
+        tr: {
+          loss: function (roas, v) { return "ROAS " + roas + " ile her siparişte " + v + " zarar ediyorsun."; },
+          gain: function (roas, v) { return "ROAS " + roas + " ile her siparişte " + v + " kâr kalıyor."; },
+          even: function (roas) { return "ROAS " + roas + " tam başabaş noktasında: kâr da yok, zarar da."; },
+          none: "Bu rakamlarla reklam öncesi bile kâr kalmıyor; önce fiyatı ya da maliyetleri gözden geçir.",
+          empty: "Kampanyanın ROAS'ını girersen sipariş başı kâr/zararı da gösteririm."
+        },
+        en: {
+          loss: function (roas, v) { return "At ROAS " + roas + " you lose " + v + " on every order."; },
+          gain: function (roas, v) { return "At ROAS " + roas + " you keep " + v + " profit per order."; },
+          even: function (roas) { return "ROAS " + roas + " is exactly break-even: no profit, no loss."; },
+          none: "With these numbers there's no margin even before ads; revisit the price or costs first.",
+          empty: "Enter your campaign's ROAS to see profit or loss per order."
+        }
+      };
+      function num(v) {
+        v = String(v).replace(/[\s₺%x]/g, "");
+        if (v.indexOf(",") !== -1) v = v.replace(/\./g, "").replace(",", ".");
+        else if (/^\d{1,3}(\.\d{3})+$/.test(v)) v = v.replace(/\./g, "");
+        var n = parseFloat(v);
+        return isFinite(n) ? n : NaN;
+      }
+      function fmt(n, digits) {
+        return n.toLocaleString(root.lang === "en" ? "en-US" : "tr-TR", { minimumFractionDigits: digits || 0, maximumFractionDigits: digits || 0 });
+      }
+      function calc() {
+        var f = calcForm.elements, t = calcText[root.lang] || calcText.tr;
+        var price = num(f.price.value) || 0;
+        var vat = price - price / (1 + (num(f.vat.value) || 0) / 100);
+        var cost = num(f.cost.value) || 0;
+        var other = price * (num(f.fee.value) || 0) / 100 + (num(f.ship.value) || 0) + (num(f.ret.value) || 0);
+        var cm = price - vat - cost - other;
+        var roas = num(f.roas.value);
+        var verdict = document.getElementById("verdict");
+
+        [vat, cost, other, Math.max(cm, 0)].forEach(function (v, i) {
+          document.getElementById("calcBar").children[i].style.flexGrow = Math.max(v, 0);
+        });
+        document.getElementById("cmVal").textContent = fmt(cm) + " ₺";
+        document.getElementById("maxCpa").textContent = fmt(Math.max(cm, 0)) + " ₺";
+
+        if (price <= 0 || cm <= 0) {
+          document.getElementById("beRoas").textContent = "—";
+          verdict.textContent = t.none; verdict.className = "verdict bad";
+          return;
+        }
+        document.getElementById("beRoas").textContent = fmt(price / cm, 1);
+        if (!(roas > 0)) { verdict.textContent = t.empty; verdict.className = "verdict"; return; }
+        var profit = cm - price / roas;
+        var r = fmt(roas, roas % 1 ? 1 : 0);
+        if (Math.abs(profit) < 0.5) { verdict.textContent = t.even(r); verdict.className = "verdict"; }
+        else if (profit < 0) { verdict.textContent = t.loss(r, fmt(-profit) + " ₺"); verdict.className = "verdict bad"; }
+        else { verdict.textContent = t.gain(r, fmt(profit) + " ₺"); verdict.className = "verdict good"; }
+      }
+      calcForm.addEventListener("input", calc);
+      buttons.forEach(function (b) { b.addEventListener("click", calc); });
+      calc();
 
       /* ---------- Contact form ---------- */
       var form = document.getElementById("contactForm");
