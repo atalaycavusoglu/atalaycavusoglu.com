@@ -95,16 +95,6 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* Cursor ring (desktop only, created in JS) */
-    .cursor {
-      position: fixed; top: 0; left: 0; z-index: 200; pointer-events: none;
-      width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%;
-      border: 1.5px solid rgba(255, 255, 255, .7); mix-blend-mode: difference;
-      opacity: 0; transition: width .3s var(--ease), height .3s var(--ease), margin .3s var(--ease), background .3s, border-color .3s, opacity .3s;
-    }
-    .has-pointer .cursor { opacity: 1; }
-    .cursor.hover { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: #fff; border-color: #fff; }
-    .cursor.down { width: 26px; height: 26px; margin: -13px 0 0 -13px; }
 
 
     /* ---------- Progress + header ---------- */
@@ -156,6 +146,10 @@
       transition-delay: calc(var(--wi) * .06s);
     }
     .words.in .w { opacity: 1; transform: none; filter: blur(0); }
+    /* Timeline entries slide in from the line, stats pop up */
+    .timeline li.reveal { transform: translateX(-40px); }
+    .stat.reveal { transform: translateY(36px) scale(.9); }
+    .timeline li.reveal.in, .stat.reveal.in { transform: none; }
 
     /* Border light that follows the pointer on cards */
     .glow { position: relative; }
@@ -1058,25 +1052,13 @@
           btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
         });
 
-        // Cursor ring, page spotlight and card border light
-        var cursor = document.createElement("div");
-        cursor.className = "cursor";
-        cursor.setAttribute("aria-hidden", "true");
-        document.body.appendChild(cursor);
+        // Page spotlight and card border light
         var glows = document.querySelectorAll(".card, .stat, .list-card, .app");
         glows.forEach(function (el) { el.classList.add("glow"); });
 
-        var mx = -100, my = -100, cx = -100, cy = -100, pending = false;
-        function follow() {
-          cx += (mx - cx) * 0.2; cy += (my - cy) * 0.2;
-          cursor.style.transform = "translate(" + cx + "px," + cy + "px)";
-          requestAnimationFrame(follow);
-        }
-        requestAnimationFrame(follow);
-
+        var mx = 0, my = 0, pending = false;
         addEventListener("pointermove", function (e) {
           mx = e.clientX; my = e.clientY;
-          if (cx < -50) { cx = mx; cy = my; }
           document.body.classList.add("has-pointer");
           if (pending) return;
           pending = true;
@@ -1092,11 +1074,6 @@
           });
         }, { passive: true });
         document.addEventListener("pointerleave", function () { document.body.classList.remove("has-pointer"); });
-        document.addEventListener("pointerover", function (e) {
-          cursor.classList.toggle("hover", !!e.target.closest("a, button, .tag, .app"));
-        });
-        addEventListener("pointerdown", function () { cursor.classList.add("down"); });
-        addEventListener("pointerup", function () { cursor.classList.remove("down"); });
       }
 
       /* ---------- Contact form ---------- */
